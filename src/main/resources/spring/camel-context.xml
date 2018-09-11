@@ -9,5 +9,27 @@
             </setBody>
             <log id="route-log" message=">>> ${body}"/>
         </route>
+        
+        <!-- ########################################################################################## -->
+        <rest id="rest-example" path="/fuseapi">
+            <get id="getForecastForMoscow" uri="/getdmzData">
+                <description>Get proxy data from KSPD</description>
+                <responseMessage code="200" message="Ok"/>
+                <responseMessage code="404" message="KSPD data not found"/>
+                <to uri="direct:getData"/>
+            </get>
+        </rest>
+        
+        
+        
+        
+        <!-- ########################################################################################## -->
+        <!-- Тестовый прокси маршрут -->
+        <!-- ########################################################################################## -->
+        <route id="proxy-route">
+            <from id="_from1" uri="direct:getData"/>
+            <log id="route-log" message="Working as a proxy!"/>
+            <to id="original-service" uri="http://eap-app-test-intg.apps.openshift.tk/integration-service/serviceapi/getData"/>
+        </route>
     </camelContext>
 </beans>
