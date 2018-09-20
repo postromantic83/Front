@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
-    <beans xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
     <camelContext id="camel_context_mc_documentService_endpoint" xmlns="http://camel.apache.org/schema/spring">
@@ -12,8 +11,6 @@
                 <to uri="direct:getData"/>
             </get>
         </rest>
-
-
         <route id="simple-route">
             <from id="route-timer" uri="timer://foo?period=1000"/>
             <setBody id="route-setBody">
@@ -21,20 +18,18 @@
             </setBody>
             <log id="route-log" message=">>> ${body}"/>
         </route>
-        
         <!-- ########################################################################################## -->
-
-        
-        
-        
-        
         <!-- ########################################################################################## -->
         <!-- Тестовый прокси маршрут -->
         <!-- ########################################################################################## -->
         <route id="proxy-route">
             <from id="_from1" uri="direct:getData"/>
             <log id="route-log" message="Working as a proxy!"/>
-            <to id="original-service" uri="http://eap-app-test-intg.apps.openshift.tk/integration-service/serviceapi/getData"/>
+            <!-- <to id="original-service" uri="http://eap-app-test-intg.apps.openshift.tk/integration-service/serviceapi/getData"/> -->
+        </route>
+        <route id="hello">
+            <from id="_from_rest_xml" uri="direct:hello"></from>
+            <log id = "hello0log" message="Hello world!"></log>
         </route>
     </camelContext>
 </beans>
