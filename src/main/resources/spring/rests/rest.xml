@@ -1,6 +1,6 @@
 <rests xmlns="http://camel.apache.org/schema/spring">
     <rest>
-        <get uri="/hello">
+        <get uri="/hello" id="hello_from">
             <to uri="direct:hello"/>
         </get>
     </rest>

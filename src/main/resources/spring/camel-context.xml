@@ -3,29 +3,25 @@
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
     <camelContext id="camel_context_mc_documentService_endpoint" xmlns="http://camel.apache.org/schema/spring">
+        <restConfiguration apiContextPath="/api-doc" component="servlet" contextPath="/weather" enableCORS="true" host="testhost" port="8080" scheme="https">
+
+        </restConfiguration>
         <rest id="rest-example" path="/fuseapi">
-            <get id="getForecastForMoscow" uri="/getdmzData">
+            <get id="getDMZData" uri="/getdmzData">
                 <description>Get proxy data from KSPD</description>
                 <responseMessage code="200" message="Ok"/>
                 <responseMessage code="404" message="KSPD data not found"/>
                 <to uri="direct:getData"/>
             </get>
         </rest>
-        <route id="simple-route">
-            <from id="route-timer" uri="timer://foo?period=1000"/>
-            <setBody id="route-setBody">
-                <simple>Hello World from camel-context.xml</simple>
-            </setBody>
-            <log id="route-log" message=">>> ${body}"/>
-        </route>
         <!-- ########################################################################################## -->
         <!-- ########################################################################################## -->
         <!-- Тестовый прокси маршрут -->
         <!-- ########################################################################################## -->
         <route id="proxy-route">
             <from id="_from1" uri="direct:getData"/>
-            <log id="route-log" message="Working as a proxy!"/>
-            <!-- <to id="original-service" uri="http://eap-app-test-intg.apps.openshift.tk/integration-service/serviceapi/getData"/> -->
+            <log id="route-proxy-log" message="Working as a proxy!"/>
+             <to id="original-service" uri="http4://eap-app-test-intg.apps.openshift.tk/integration-service/serviceapi/getData"/>
         </route>
         <route id="hello">
             <from id="_from_rest_xml" uri="direct:hello"></from>
