@@ -7,7 +7,7 @@
                            component="servlet"
                            contextPath="/dmz"
                            enableCORS="true"
-                           host="localhost"
+                           host="temphost.ru"
                            port="8080"
                            scheme="http">
 
