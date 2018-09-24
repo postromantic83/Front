@@ -8,4 +8,4 @@ spec:
     targetPort: 8080
   to:
     kind: Service
-    name: appRoute
+    name: appService
