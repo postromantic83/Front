@@ -9,7 +9,7 @@
                            enableCORS="true"
                            host="testhost.ru"
                            port="8080"
-                           scheme="https">
+                           scheme="http">
 
         </restConfiguration>
         <rest id="rest-example" path="/fuseapi">
