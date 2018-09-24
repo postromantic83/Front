@@ -62,6 +62,10 @@
   </dependencies>
   <repositories>
     <repository>
+      <id>kspd-rep</id>
+      <url>http://www.demo.rht.ru/repos/maven/repository/</url>
+    </repository>
+    <repository>
       <id>red-hat-ga-repository</id>
       <url>https://maven.repository.redhat.com/ga</url>
     </repository>
@@ -99,7 +103,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
+        <version>1.5.12.RELEASE</version>
         <executions>
           <execution>
             <goals>
@@ -108,19 +112,19 @@
           </execution>
         </executions>
       </plugin>
-      <!--<plugin>-->
-        <!--<groupId>io.fabric8</groupId>-->
-        <!--<artifactId>fabric8-maven-plugin</artifactId>-->
-        <!--<version>${fabric8.maven.plugin.version}</version>-->
-        <!--<executions>-->
-          <!--<execution>-->
-            <!--<goals>-->
-              <!--<goal>resource</goal>-->
-              <!--<goal>build</goal>-->
-            <!--</goals>-->
-          <!--</execution>-->
-        <!--</executions>-->
-      <!--</plugin>-->
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-maven-plugin</artifactId>
+        <version>${fabric8.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>resource</goal>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>

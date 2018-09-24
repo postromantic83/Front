@@ -3,7 +3,13 @@
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
     <camelContext id="camel_context_mc_documentService_endpoint" xmlns="http://camel.apache.org/schema/spring">
-        <restConfiguration apiContextPath="/api-doc" component="servlet" contextPath="/weather" enableCORS="true" host="testhost" port="8080" scheme="https">
+        <restConfiguration apiContextPath="/api-doc"
+                           component="servlet"
+                           contextPath="/dmz"
+                           enableCORS="true"
+                           host="testhost.ru"
+                           port="8080"
+                           scheme="https">
 
         </restConfiguration>
         <rest id="rest-example" path="/fuseapi">
