@@ -7,12 +7,14 @@
                            component="servlet"
                            contextPath="/dmz"
                            enableCORS="true"
-                           host="temphost.ru"
+                           host="localhost"
                            port="8080"
                            scheme="http">
 
         </restConfiguration>
         <rest id="rest-example" path="/fuseapi">
+
+
             <get id="getDMZData" uri="/getdmzData">
                 <description>Get proxy data from KSPD</description>
                 <responseMessage code="200" message="Ok"/>
@@ -27,7 +29,7 @@
         <route id="proxy-route">
             <from id="_from1" uri="direct:getData"/>
             <log id="route-proxy-log" message="Working as a proxy!"/>
-             <to id="original-service" uri="http4://eap-app-test-intg.apps.openshift.tk/integration-service/serviceapi/getData"/>
+             <to id="original-service" uri="http4://eap-app-integration-app.kspd-apps.demo.rht.ru/integration-service/serviceapi/getData?bridgeEndpoint=true"/>
         </route>
         <route id="hello">
             <from id="_from_rest_xml" uri="direct:hello"></from>
