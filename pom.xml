@@ -10,8 +10,8 @@
   <properties>
     <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
     <fabric8.version>3.0.11.fuse-000039-redhat-1</fabric8.version>
-    <fabric8.maven.plugin.version>3.5.33.fuse-000067-redhat-1</fabric8.maven.plugin.version>
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+    <fabric8.maven.plugin.version>3.5.33.fuse-000067-redhat-1</fabric8.maven.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
   </properties>
@@ -36,23 +36,33 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
       <version>1.5.12.RELEASE</version>
-        <exclusions>
-            <exclusion>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-tomcat</artifactId>
-            </exclusion>
-        </exclusions>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <groupId>org.springframework.boot</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-      <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-undertow</artifactId>
-          <version>1.5.12.RELEASE</version>
-      </dependency>
-      <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-configuration-processor</artifactId>
-          <optional>true</optional>
-      </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-undertow</artifactId>
+      <version>1.5.12.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-activemq</artifactId>
+      <version>1.5.12.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jms</artifactId>
+      <version>4.3.16.RELEASE</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring-boot-starter</artifactId>
@@ -62,19 +72,32 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-servlet-starter</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-swagger-java-starter</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-amqp-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-jms-pool</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-http4</artifactId>
     </dependency>
-
-
-
+    <!--<dependency>-->
+      <!--<groupId>org.apache.activemq</groupId>-->
+      <!--<artifactId>activemq-camel-starter</artifactId>-->
+      <!--<version></version>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jms-starter</artifactId>
+      <version>2.21.0.fuse-000077-redhat-1</version>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
@@ -94,7 +117,6 @@
       <url>https://repository.jboss.org/nexus/content/groups/ea</url>
     </repository>
   </repositories>
-
   <pluginRepositories>
     <pluginRepository>
       <id>kspd-plugins</id>
@@ -128,19 +150,6 @@
           </execution>
         </executions>
       </plugin>
-      <!--<plugin>-->
-        <!--<groupId>io.fabric8</groupId>-->
-        <!--<artifactId>fabric8-maven-plugin</artifactId>-->
-        <!--<version>${fabric8.maven.plugin.version}</version>-->
-        <!--<executions>-->
-          <!--<execution>-->
-            <!--<goals>-->
-              <!--<goal>resource</goal>-->
-              <!--<goal>build</goal>-->
-            <!--</goals>-->
-          <!--</execution>-->
-        <!--</executions>-->
-      <!--</plugin>-->
     </plugins>
   </build>
 </project>

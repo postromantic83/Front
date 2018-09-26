@@ -2,24 +2,29 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="org.apache.qpid.jms.JmsConnectionFactory"
+        id="amqpDmzConnectionFactory" primary="true">
+        <property name="remoteURI" value="${spring.activemq.broker-url}"/>
+        <property name="username" value="${spring.activemq.user}"/>
+        <property name="password" value="${spring.activemq.password}"/>
+    </bean>
+    <bean class="org.apache.camel.component.amqp.AMQPComponent" id="activemq">
+        <property name="connectionFactory" ref="amqpDmzConnectionFactory"/>
+    </bean>
     <camelContext id="camel_context_mc_documentService_endpoint" xmlns="http://camel.apache.org/schema/spring">
-        <restConfiguration apiContextPath="/api-doc"
-                           component="servlet"
-                           contextPath="/dmz"
-                           enableCORS="true"
-                           host="localhost"
-                           port="8080"
-                           scheme="http">
-
-        </restConfiguration>
-        <rest id="rest-example" path="/fuseapi">
-
-
+        <restConfiguration apiContextPath="/api-doc" component="servlet"
+            contextPath="/dmz" enableCORS="true" host="localhost"
+            port="8080" scheme="http"/>
+        <rest id="rest-example" path="/dmz-api">
             <get id="getDMZData" uri="/getdmzData">
                 <description>Get proxy data from KSPD</description>
                 <responseMessage code="200" message="Ok"/>
                 <responseMessage code="404" message="KSPD data not found"/>
                 <to uri="direct:getData"/>
+            </get>
+            <get id="amq-example" uri="/getAsyncData">
+                <description>returms request id</description>
+                <to uri="direct:addToQue"/>
             </get>
         </rest>
         <!-- ########################################################################################## -->
@@ -29,11 +34,16 @@
         <route id="proxy-route">
             <from id="_from1" uri="direct:getData"/>
             <log id="route-proxy-log" message="Working as a proxy!"/>
-             <to id="original-service" uri="http4://eap-app-integration-app.kspd-apps.demo.rht.ru/integration-service/serviceapi/getData?bridgeEndpoint=true"/>
+            <to id="original-service" uri="http4://eap-app-integration-app.kspd-apps.demo.rht.ru/integration-service/serviceapi/getData?bridgeEndpoint=true"/>
         </route>
         <route id="hello">
-            <from id="_from_rest_xml" uri="direct:hello"></from>
-            <log id = "hello0log" message="Hello world!"></log>
+            <from id="_from_rest_xml" uri="direct:hello"/>
+            <log id="hello0log" message="Hello world!"/>
+        </route>
+        <route id="send_toQue1_route">
+            <from id="_from_amq-example" uri="direct:addToQue"/>
+            <log id="add_to_que_log" message="add message to que"/>
+            <to id="_to1" uri="activemq"/>
         </route>
     </camelContext>
 </beans>
