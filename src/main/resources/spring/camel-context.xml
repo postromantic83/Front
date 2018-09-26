@@ -19,11 +19,12 @@
             <get id="getDMZData" uri="/getdmzData">
                 <description>Get proxy data from KSPD</description>
                 <responseMessage code="200" message="Ok"/>
-                <responseMessage code="404" message="KSPD data not found"/>
+                <responseMessage code="500" message="KSPD data not found"/>
                 <to uri="direct:getData"/>
             </get>
             <get id="amq-example" uri="/getAsyncData">
-                <description>returms request id</description>
+                <responseMessage code="200" message="Ok"/>
+                <responseMessage code="500" message="Queque ERROR!"/>
                 <to uri="direct:addToQue"/>
             </get>
         </rest>
@@ -43,7 +44,7 @@
         <route id="send_toQue1_route">
             <from id="_from_amq-example" uri="direct:addToQue"/>
             <log id="add_to_que_log" message="add message to que"/>
-            <to id="_to1" uri="activemq"/>
+            <to id="_to1" uri="activemq:queue:que1"/>
         </route>
     </camelContext>
 </beans>
