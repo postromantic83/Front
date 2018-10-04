@@ -1,6 +1,8 @@
 package ru.gazpromneft_at.model;
 
-public class Messaga {
+import java.io.Serializable;
+
+public class Messaga implements Serializable {
     private Long id;
     private String messageText;
 

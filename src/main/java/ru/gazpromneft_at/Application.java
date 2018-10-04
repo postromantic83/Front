@@ -2,6 +2,7 @@
 package ru.gazpromneft_at;
 
 
+import org.apache.camel.Exchange;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
