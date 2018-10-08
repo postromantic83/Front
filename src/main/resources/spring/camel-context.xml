@@ -15,7 +15,7 @@
     <bean class="ru.gazpromneft_at.components.RequestProcessor" id="requestProcessor"></bean>
     <bean class="ru.gazpromneft_at.components.MessageReceiver" id="messageReceiver"></bean>
     <bean class="ru.gazpromneft_at.components.MessageIdReceiver" id="messageIdReceiver"></bean>
-    <bean class="ru.gazpromneft_at.components.KspdProcessor" id="kspdProcessor"></bean>
+    <bean class="ru.gazpromneft_at.components.KspdLogicProcessor" id="kspdProcessor"></bean>
 
     <camelContext id="camel_context_mc_documentService_endpoint" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="/api-doc" component="servlet"

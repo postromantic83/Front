@@ -6,7 +6,11 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.gazpromneft_at.model.Messaga;
 
-public class KspdProcessor implements Processor {
+/**
+ * Класс для реализации логики на стороне КСПД.
+ *
+ */
+public class KspdLogicProcessor implements Processor {
     private Logger logger = LogManager.getLogger(MessageReceiver.class);
     public void process(Exchange exchange) throws Exception {
         String correlation = (String) exchange.getMessage().getHeader("JMSCorrelationID");
