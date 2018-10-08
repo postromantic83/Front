@@ -1,26 +1,29 @@
 package ru.gazpromneft_at.components;
 
 import org.apache.camel.Exchange;
+
 import org.apache.camel.Processor;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.apache.qpid.jms.JmsDestination;
+
 import org.apache.qpid.jms.JmsQueue;
+
+import org.apache.qpid.jms.message.JmsMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.gazpromneft_at.model.Messaga;
 
 import javax.jms.*;
 
 @Component
-public class MessageProcessor implements Processor {
-    private Logger logger = LogManager.getLogger(MessageProcessor.class);
+public class MessageReceiver implements Processor {
+    private Logger logger = LogManager.getLogger(MessageReceiver.class);
 
     @Autowired
     private org.apache.qpid.jms.JmsConnectionFactory amqpDmzConnectionFactory;
 
     public void process(Exchange exchange) throws Exception {
-//        Message message = exchange.getMessage();
-        logger.info("START PROCESSOR!");
+        logger.info("START RECEIVER PROCESSOR!");
 
             Connection connection = amqpDmzConnectionFactory.createConnection();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -29,8 +32,12 @@ public class MessageProcessor implements Processor {
             MessageConsumer consumer = session.createConsumer(queue);
             connection.start();
             try {
-                TextMessage messageReceived = (TextMessage) consumer.receive();
-                exchange.getIn().setBody(messageReceived.getText());
+                JmsMessage messageReceived = (JmsMessage) consumer.receive();
+                logger.info("Message Id:" + messageReceived.getJMSMessageID());
+                logger.info("Message CorrelationId:" + messageReceived.getJMSCorrelationID());
+                exchange.getIn().setBody(messageReceived.getBody(Messaga.class));
+                exchange.getIn().setHeader("Accept", "Application/json");
+                exchange.getIn().setHeader("Content-Type", "application/json; charset=UTF-8");
             } catch (Exception e){
                 logger.error("Ошибка получения сообщения!" + e.getMessage());
                 exchange.getIn().setBody("Ошибка получения сообщения!");

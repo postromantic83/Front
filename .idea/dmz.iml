@@ -73,7 +73,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.16.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-spring-boot-starter:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-spring-boot:2.21.0.fuse-000077-redhat-1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.camel:camel-spring:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-core-starter:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-servlet-starter:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-servlet:2.21.0.fuse-000077-redhat-1" level="project" />
@@ -114,21 +113,17 @@
     <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.22.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.22.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.22.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.activemq:activemq-jms-pool:5.11.0.redhat-630343" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1.1.redhat-2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.0.1B_spec:1.0.1" level="project" />
-    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-http4:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-core:2.21.0.fuse-000077-redhat-1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-http-common:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-core:2.2.11.redhat-4" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.11.redhat-4" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.camel:camel-jms-starter:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-jms:2.21.0.fuse-000077-redhat-1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.camel:camel-spring:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jms_2.0_spec:1.0.0.alpha-2-redhat-2" level="project" />
   </component>
   <component name="sonarModuleSettings">
