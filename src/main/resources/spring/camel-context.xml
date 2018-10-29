@@ -49,7 +49,7 @@
         </route>
 
         <!--  IN  -->
-        <route id="hello" >
+        <route id="hello">
             <from id="_from_rest_xml" uri="direct:hello"/>
             <setExchangePattern pattern="InOut"></setExchangePattern>
             <log id="hello0log" message="Hello world start!"/>
