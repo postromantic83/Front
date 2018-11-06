@@ -11,12 +11,11 @@
     <bean class="org.apache.camel.component.amqp.AMQPComponent" id="activemq">
         <property name="connectionFactory" ref="amqpDmzConnectionFactory"/>
     </bean>
-    <bean class="ru.gazpromneft_at.components.RequestHandlerBean" id="corIdGenerator"></bean>
-    <bean class="ru.gazpromneft_at.components.RequestProcessor" id="requestProcessor"></bean>
-    <bean class="ru.gazpromneft_at.components.MessageReceiver" id="messageReceiver"></bean>
-    <bean class="ru.gazpromneft_at.components.MessageIdReceiver" id="messageIdReceiver"></bean>
-    <bean class="ru.gazpromneft_at.components.KspdLogicProcessor" id="kspdProcessor"></bean>
-
+    <bean class="ru.gazpromneft_at.components.RequestHandlerBean" id="corIdGenerator"/>
+    <bean class="ru.gazpromneft_at.components.RequestProcessor" id="requestProcessor"/>
+    <bean class="ru.gazpromneft_at.components.MessageReceiver" id="messageReceiver"/>
+    <bean class="ru.gazpromneft_at.components.MessageIdReceiver" id="messageIdReceiver"/>
+    <bean class="ru.gazpromneft_at.components.KspdLogicProcessor" id="kspdProcessor"/>
     <camelContext id="camel_context_mc_documentService_endpoint" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="/api-doc" component="servlet"
             contextPath="/dmz" enableCORS="true" host="localhost"
@@ -34,8 +33,8 @@
                 <to uri="direct:addToQue"/>
             </get>
             <get id="hello-dmz" uri="/getHello">
-                <responseMessage code="200" message="OK"></responseMessage>
-                <to uri="direct:fuseHello"></to>
+                <responseMessage code="200" message="OK"/>
+                <to uri="direct:fuseHello"/>
             </get>
         </rest>
         <!-- ########################################################################################## -->
@@ -47,76 +46,51 @@
             <log id="route-proxy-log" message="Working as a proxy!"/>
             <to id="original-service" uri="http4://eap-app-integration-app.kspd-apps.demo.rht.ru/integration-service/serviceapi/getData?bridgeEndpoint=true"/>
         </route>
-
         <!--  IN  -->
-        <route id="hello">
-            <from id="_from_rest_xml" uri="direct:hello"/>
-            <setExchangePattern pattern="InOut"></setExchangePattern>
+        <route id="getDmzDataRequest">
+            <from id="_from_rest_xml" uri="direct:getDataFromDmz"/>
+            <setExchangePattern id="_setExchangePattern1" pattern="InOut"/>
             <log id="hello0log" message="Hello world start!"/>
-            <process ref="requestProcessor"></process>
+            <process id="_process1" ref="requestProcessor"/>
             <inOnly id="_to_que_in" uri="activemq:queue:que_in?useMessageIDAsCorrelationID=false?acknowledgementModeName=AUTO_ACKNOWLEDGE"/>
         </route>
-
-
         <!-- ***   THIS IS FOR KSPD PROCESSOR  *** -->
         <route id="kspd-request">
-            <from id="from_dmz" uri="activemq:queue:que_in"></from>
-            <setExchangePattern pattern="InOnly"></setExchangePattern>
-            <log id="from_que1" message="FROM QUE"></log>
-            <process ref="kspdProcessor"></process>
-            <setHeader headerName="HELLO">
+            <from id="from_dmz" uri="activemq:queue:que_in"/>
+            <setExchangePattern id="_setExchangePattern2" pattern="InOnly"/>
+            <log id="from_que1" message="FROM QUE"/>
+            <process id="_process2" ref="kspdProcessor"/>
+            <setHeader headerName="HELLO" id="_setHeader1">
                 <constant>WORLD</constant>
             </setHeader>
-            <log message="MOVE FROM IN TO OUT"></log>
-            <to  uri="activemq:queue:que_out"></to>
+            <log id="_log1" message="MOVE FROM IN TO OUT"/>
+            <to id="_to2" uri="activemq:queue:que_out"/>
         </route>
-
-
-
-        <!--   OUT   RESULT   -->
-
-        <route id="result">
-            <from uri="direct:result"></from>
-            <setExchangePattern pattern="InOut"></setExchangePattern>
-            <process ref="messageReceiver"></process>
-            <log message="DATA RECIEVED!"></log>
-            <setHeader headerName="RESULT">
-                <constant>EST RESULT</constant>
-            </setHeader>
-        </route>
-
 
         <!--   OUT   RESULT  BY ID  -->
-
         <route id="resultId">
-            <from uri="direct:resultId"></from>
-            <setExchangePattern pattern="InOut"></setExchangePattern>
-            <process ref="messageIdReceiver"></process>
-            <log message="DATA RECIEVED!"></log>
-            <setHeader headerName="RESULT">
+            <from id="_from3" uri="direct:resultId"/>
+            <setExchangePattern id="_setExchangePattern4" pattern="InOut"/>
+            <process id="_process4" ref="messageIdReceiver"/>
+            <log id="_log3" message="DATA RECIEVED!"/>
+            <setHeader headerName="RESULT" id="_setHeader3">
                 <constant>EST RESULT</constant>
             </setHeader>
         </route>
-
-
-
-
         <route id="send_toQue_in_route">
             <from id="_from_amq-example" uri="direct:addToQue"/>
             <log id="add_to_que_log" message="add message to que"/>
-            <setBody>
+            <setBody id="_setBody1">
                 <constant>ADDED TO QUE_IN</constant>
             </setBody>
             <to id="_to1" uri="activemq:queue:que_in?acknowledgementModeName=CLIENT_ACKNOWLEDGE"/>
         </route>
         <route id="route-hello-dmz">
-            <from id="from-hello-dmz" uri="direct:fuseHello"></from>
-            <setBody>
+            <from id="from-hello-dmz" uri="direct:fuseHello"/>
+            <setBody id="_setBody2">
                 <constant>BODY BUILDER</constant>
             </setBody>
-            <log id="helloDMZ" message="HELLO DMZ!"></log>
+            <log id="helloDMZ" message="HELLO DMZ!"/>
         </route>
-
-
     </camelContext>
 </beans>

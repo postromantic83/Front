@@ -9,10 +9,9 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.jms.annotation.EnableJms;
 
 /**
- * A spring-boot application that includes a Camel route builder to setup the Camel routes
+ * Основной класс приложения.
  */
 @SpringBootApplication
-@EnableJms
 @ImportResource({"classpath:spring/camel-context.xml"})
 public class Application {
 
