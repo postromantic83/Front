@@ -20,8 +20,6 @@ public class RequestProcessor implements Processor {
         Messaga requestRespMessage = new Messaga(null, "Your request in process", correlationId);
         exchange.getOut().setBody(requestRespMessage);
         exchange.getOut().setHeader("JMSCorrelationID", correlationId);
-//        exchange.getIn().setBody(requestRespMessage);
-//        exchange.getIn().setHeader("JMSCorrelationID", correlationId);
     }
 
     private String generateUUID(){
