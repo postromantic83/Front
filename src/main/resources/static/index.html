@@ -15,7 +15,7 @@
         //Controller Part
         app.controller("DMZController", function ($scope, $http) {
             //Initialize page with default data which is blank in this example
-            $scope.fruits = [];
+            $scope.correlationId = [];
             $scope.form = {
                 id: -1,
                 name: ""
@@ -53,29 +53,22 @@
                     method: 'GET',
                     url: '/dmz-api/getDataFromDmz',
                 }).then(function successCallback(response) {
-                    console.log('Succ');
-                    console.log(response.status);
-                    console.log(response.data);
-                    // var datares = {null, null, null};
-                    var datares = response.data;
-                    console.log('datares' + datares.correlationId);
-                    // console.log(response.headers);
-
-                    // console.log(response);
-                    // console.log(response.data);
-                    // console.log(response.data.Messaga.correlationId);
-                    // console.log(response.getResponseHeader("JMSCorrelationID"));
-                    // console.log(response.data);
-                    // console.log(response.statusText);
-                    // $scope.form.result = response.data;
-                    // $scope.dataresult = response.data.messaga.messageText;
-                    // $scope.correlationId = response.data.messaga.correlationId;
+                    $scope.correlationId = response.data.correlationId;
+                    $scope.requestTextMessage = response.data.textMessage;
                 }, function errorCallback(response) {
                     console.log('Error');
-                    // console.log(response.data);
-                    // console.log(response.data);
-                    // console.log(response.statusText);
-                    // console('Server error' + response.data.messaga)
+                });
+            };
+
+            $scope.test2 = function (corId) {
+                $http({
+                    method: 'GET',
+                    url: '/dmz-api/resultId/'+corId,
+                }).then(function successCallback(response) {
+                    $scope.correlationId = response.data.correlationId;
+                    $scope.responseTextMessage = response.data.textMessage;
+                }, function errorCallback(response) {
+                    console.log('Error');
                 });
             };
             //HTTP DELETE- delete fruit by id
@@ -150,30 +143,23 @@
 
 <p>
 <div class="container-fluid">
-    <form ng-submit="test1()"
+    <form
           class="form-inline">
 
         <input class="form-control mr-sm-2" type="search" placeholder="Введите сообщение" aria-label="запрос">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Отправить</button>
+        <button ng-click="test1()"
+                class="btn btn-outline-success my-2 my-sm-0"
+                >Отправить
+        </button>
         <p></p>
-        <P>RESULT:{{dataresult}}</P>
-        <P>CORRELATION_ID RES:{{correlationId}}</P>
+        <p>RESULT: {{requestTextMessage}}</p>
+        <p>CORRELATION_ID RES: {{correlationId}}</p>
+        <button ng-click="test2(correlationId)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Получить ответ</button>
+        <p>RESPONSE: {{responseTextMessage}}</p>
     </form>
 </div>
 
 </p>
-
-<br>
-
-<form ng-submit="test1()">
-    <div class="row">
-        <div class="col-6"><input type="text" placeholder="Введи сообщение" ng-model="form.name" size="60"/></div>
-    </div>
-    <input type="submit" value="Нажми меня если сможешь"/>
-    <output ng-model="form.result.messageText"></output>
-    <P>RESULT:{{dataresult}}</P>
-</form>
-
 
 </body>
 </html>

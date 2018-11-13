@@ -20,6 +20,7 @@ public class RequestProcessor implements Processor {
         Messaga requestRespMessage = new Messaga(null, "Your request in process", correlationId);
 //        String requestRespMessage = "{correlationId:123456}";
         exchange.getOut().setBody(requestRespMessage);
+//        exchange.getOut().setBody("correlationId:'" + correlationId + "'");
         exchange.getOut().setHeader("JMSCorrelationID", correlationId);
     }
 

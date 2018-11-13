@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
@@ -17,6 +19,12 @@
     <bean class="ru.gazpromneft_at.components.MessageIdReceiver" id="messageIdReceiver"/>
     <bean class="ru.gazpromneft_at.components.KspdLogicProcessor" id="kspdProcessor"/>
     <camelContext id="camel_context_crm_dmz" xmlns="http://camel.apache.org/schema/spring">
+        <dataFormats>
+            <!-- Here we define a Json data format with the id jack and that it should use the
+             TestPojo as the class type when doing unmarshal. The unmarshalTypeName is optional,
+              if not provided Camel will use a Map as the type. -->
+            <json id="jack" library="Jackson" unmarshalTypeName="ru.gazpromneft_at.model.Messaga"/>
+        </dataFormats>
         <restConfiguration apiContextPath="/api-doc" component="servlet"
             contextPath="/dmz" enableCORS="true" host="localhost"
             port="8090" scheme="http"/>
@@ -44,6 +52,7 @@
             <setExchangePattern id="_setExchangePattern1" pattern="InOut"/>
             <log id="hello0log" message="Hello world start!"/>
             <process id="_process1" ref="requestProcessor"/>
+            <marshal ref="jack"></marshal>
             <!--<marshal ref="xmljson"></marshal>-->
             <inOnly id="_to_que_in" uri="activemq:queue:que_in?useMessageIDAsCorrelationID=false?acknowledgementModeName=AUTO_ACKNOWLEDGE"/>
         </route>
