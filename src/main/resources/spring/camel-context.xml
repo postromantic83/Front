@@ -78,6 +78,7 @@
             <setHeader headerName="RESULT" id="_setHeader3">
                 <constant>EST RESULT</constant>
             </setHeader>
+            <marshal ref="jack"></marshal>
         </route>
         <route id="send_toQue_in_route">
             <from id="_from_amq-example" uri="direct:addToQue"/>
