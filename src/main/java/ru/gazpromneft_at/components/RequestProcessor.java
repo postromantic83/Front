@@ -15,9 +15,10 @@ public class RequestProcessor implements Processor {
      */
     public void process(Exchange exchange) throws Exception {
         String correlationId = generateUUID();
-        exchange.getOut().setHeader("Accept", "Application/json");
+        exchange.getOut().setHeader("Accept", "Application/json, application/xhtml+xml");
         exchange.getOut().setHeader("Content-Type", "application/json; charset=UTF-8");
         Messaga requestRespMessage = new Messaga(null, "Your request in process", correlationId);
+//        String requestRespMessage = "{correlationId:123456}";
         exchange.getOut().setBody(requestRespMessage);
         exchange.getOut().setHeader("JMSCorrelationID", correlationId);
     }

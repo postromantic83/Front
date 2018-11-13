@@ -115,15 +115,21 @@
     <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.22.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.22.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.22.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.camel:camel-http4:2.21.0.fuse-000077-redhat-1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.camel:camel-xmljson:2.19.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-core:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2.redhat-2" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-core:2.2.11.redhat-4" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.11.redhat-4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.camel:camel-http4:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-http-common:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-core:2.2.11.redhat-4" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.11.redhat-4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-jms:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-spring:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jms_2.0_spec:1.0.0.alpha-2-redhat-2" level="project" />
