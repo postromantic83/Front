@@ -114,7 +114,7 @@
     <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.22.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.22.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.22.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.camel:camel-jackson:2.22.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.camel:camel-jackson:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-core:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.11" level="project" />

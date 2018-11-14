@@ -83,7 +83,7 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jackson</artifactId>
-      <version>2.22.2</version>
+      <!--<version>2.22.2</version>-->
     </dependency>
     <!--<dependency>-->
       <!--<groupId>org.apache.activemq</groupId>-->
@@ -106,6 +106,10 @@
   </dependencies>
   <repositories>
     <repository>
+      <id>nexus-dmz</id>
+      <url>http://nexus-xpaas-images-tp.dmz-apps.demo.rht.ru/repository/maven-releases</url>
+    </repository>
+    <repository>
       <id>kspd-rep</id>
       <url>http://www.demo.rht.ru/repos/maven/repository/</url>
     </repository>
@@ -123,6 +127,10 @@
     </repository>
   </repositories>
   <pluginRepositories>
+      <pluginRepository>
+          <id>nexus-dmz</id>
+          <url>http://nexus-xpaas-images-tp.dmz-apps.demo.rht.ru/repository/maven-releases</url>
+      </pluginRepository>
     <pluginRepository>
       <id>kspd-plugins</id>
       <url>http://www.demo.rht.ru/repos/maven/repository/</url>
