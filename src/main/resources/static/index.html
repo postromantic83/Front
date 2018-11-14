@@ -12,43 +12,9 @@
 
     <script type="text/javascript">
         var app = angular.module("DMZ_App", []);
-        //Controller Part
         app.controller("DMZController", function ($scope, $http) {
-            //Initialize page with default data which is blank in this example
-            // $scope.correlationId = [];
-            $scope.form = {
-                id: -1,
-                name: ""
-            };
-            //Now load the data from server
-            _refreshPageData();
-            //HTTP POST/PUT methods for add/edit fruits
-            $scope.update = function () {
-                var method = "";
-                var url = "";
-                var data = {};
-                if ($scope.form.id == -1) {
-                    //Id is absent so add fruits - POST operation
-                    method = "POST";
-                    url = '/api/fruits';
-                    data.name = $scope.form.name;
-                } else {
-                    //If Id is present, it's edit operation - PUT operation
-                    method = "PUT";
-                    url = '/api/fruits/' + $scope.form.id;
-                    data.name = $scope.form.name;
-                }
-                $http({
-                    method: method,
-                    url: url,
-                    data: angular.toJson(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(_success, _error);
-            };
-            //HTTP POST/PUT methods for add/edit fruits
-            $scope.test1 = function () {
+
+            $scope.getRequest = function () {
                 $http({
                     method: 'GET',
                     url: '/dmz-api/getDataFromDmz',
@@ -60,7 +26,7 @@
                 });
             };
 
-            $scope.test2 = function (corId) {
+            $scope.getResponse = function (corId) {
                 $http({
                     method: 'GET',
                     url: '/dmz-api/resultId/'+corId,
@@ -71,49 +37,9 @@
                     console.log('Error');
                 });
             };
-            //HTTP DELETE- delete fruit by id
-            $scope.remove = function (fruit) {
-                $http({
-                    method: 'DELETE',
-                    url: '/api/fruits/' + fruit.id
-                }).then(_success, _error);
-            };
-            //In case of edit fruits, populate form with fruit data
-            $scope.edit = function (fruit) {
-                $scope.form.name = fruit.name;
-                $scope.form.id = fruit.id;
-            };
-            /* Private Methods */
-            //HTTP GET- get all fruits collection
-            function _refreshPageData() {
-                $http({
-                    method: 'GET',
-                    url: '/health/hello'
-                }).then(function successCallback(response) {
-                    $scope.fruits = response.data;
-                }, function errorCallback(response) {
-                    console.log(response.statusText);
-                });
-            }
-            function _success(response) {
-                console.log('success!');
-                _refreshPageData();
-                _clearForm()
-            }
-            function _error(response) {
-                console.error(response.statusText);
-            }
-            //Clear the form
-            function _clearForm() {
-                $scope.form.name = "";
-                $scope.form.id = -1;
-            }
+
         });
     </script>
-
-
-
-
 </head>
 
 <body ng-app="DMZ_App" ng-controller="DMZController">
@@ -144,7 +70,7 @@
 <div class="container-fluid">
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Введите сообщение" aria-label="запрос">
-        <button ng-click="test1()"
+        <button ng-click="getRequest()"
                 class="btn btn-outline-success my-2 my-sm-0"
                 >Отправить
         </button>
@@ -156,7 +82,7 @@
             aria-label="Id"
             ng-value=correlationId>
 
-    <button ng-click="test2(correlationId)"
+    <button ng-click="getResponse(correlationId)"
         ng-if="correlationId"
         class="btn btn-outline-success my-2 my-sm-0">Получить ответ</button>
     <output class="form-control mr-sm-2"

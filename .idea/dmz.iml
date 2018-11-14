@@ -124,7 +124,7 @@
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-core:2.2.11.redhat-4" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.11.redhat-4" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.camel:camel-jackson:2.22.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.camel:camel-jackson:2.21.0-000033.fuse-000001" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.11" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-http4:2.21.0.fuse-000077-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-http-common:2.21.0.fuse-000077-redhat-1" level="project" />
